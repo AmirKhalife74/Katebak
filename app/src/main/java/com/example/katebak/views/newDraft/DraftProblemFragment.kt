@@ -12,7 +12,6 @@ import com.example.katebak.R
 import com.example.katebak.data.models.DraftModel
 import com.example.katebak.databinding.FragmentNewProblemBinding
 import com.example.katebak.utils.Env
-import com.example.katebak.utils.Env.userProblem
 import com.example.katebak.utils.logger
 import com.example.katebak.viewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint

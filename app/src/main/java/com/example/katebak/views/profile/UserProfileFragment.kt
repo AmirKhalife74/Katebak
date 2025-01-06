@@ -1,16 +1,12 @@
 package com.example.katebak.views.profile
 
 import android.os.Bundle
-import android.system.Os.listen
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
-import com.example.katebak.R
-import com.example.katebak.databinding.FragmentProfileBinding
 import com.example.katebak.databinding.FragmentUserProfileBinding
-import com.example.katebak.utils.Env
 import com.example.katebak.viewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
