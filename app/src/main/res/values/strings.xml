@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Katebak</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edt_problem_hint">مشکلتون رو اینجا وارد کنید ... مثلا (من یه ملکی دارم که آقای [نام][نام خانوادگی] اون رو به زور تصرف کرده.ازش کد ملی یا آدرس ندارم فقط شماره موبایلش رو دارم که اینه [0912000000])</string>
+    <string name="draft_text">عریضه نویسی و تنظیم شکوایه 24 ساعته</string>
+</resources>
