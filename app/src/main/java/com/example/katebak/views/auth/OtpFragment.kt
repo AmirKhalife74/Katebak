@@ -63,6 +63,7 @@ class OtpFragment(private val listener: AuthNavigationListener) : Fragment() {
                         otpCode = convertPersianToLatinNumbers(edtUsername.text.toString()),
                         problem = userProblem
                     )
+                    mainViewModel._clearCheckOtpResponse()
                     mainViewModel.checkOtp(otp)
                 }
 
@@ -93,15 +94,21 @@ class OtpFragment(private val listener: AuthNavigationListener) : Fragment() {
             mainViewModel.checkOtpResponse.observe(viewLifecycleOwner) { result ->
                 result?.let {
                     Env.store.setBoolean("isLogin", true)
+                    val userprofile = Env.userProfile
+                    userprofile?.let {
+                        mainViewModel.viewModelScope.launch {
+                            mainViewModel.updateProfile(userprofile)
+                        }
+
+                    }
                     Env.store.setString("access_token", it.data.token)
                     val draft = DraftModel(Env.userProblem)
-                    if (draft.problem.isNotBlank()) {
+                    if (draft.problem.isNotBlank() && draft.problem.isNotEmpty()) {
                         mainViewModel.viewModelScope.launch {
                             mainViewModel.newDraft(draft)
                         }
                     } else {
-                        val action = OtpFragmentDirections.actionOtpFragmentToDraftResultFragment()
-                        findNavController().navigate(action)
+                        findNavController().navigate(R.id.action_authFragment_to_draftProblemFragment)
                     }
 
                 }
@@ -110,8 +117,7 @@ class OtpFragment(private val listener: AuthNavigationListener) : Fragment() {
                 data?.data.let {
                     if (it != null) {
                         val json = Gson().toJson(it)
-                        val action = OtpFragmentDirections.actionOtpFragmentToDraftResultFragment()
-                        findNavController().navigate(action)
+                        findNavController().navigate(R.id.action_authFragment_to_draftResultFragment)
                     }
 
 

@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/primary_color</item>
+        <item name="android:fontFamily">@font/dana_medium</item>
     </style>
 
     <style name="Theme.Katebak" parent="Base.Theme.Katebak" />

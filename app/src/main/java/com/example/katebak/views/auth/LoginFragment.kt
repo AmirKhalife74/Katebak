@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.viewModelScope
 import com.example.katebak.R
 import com.example.katebak.data.models.LoginRequest
+import com.example.katebak.data.models.ProfileModel
 import com.example.katebak.databinding.FragmentAuthBinding
 import com.example.katebak.databinding.FragmentLoginBinding
 import com.example.katebak.utils.AuthNavigationListener
 import com.example.katebak.utils.Env.userPhoneNumber
+import com.example.katebak.utils.Env.userProfile
 import com.example.katebak.utils.convertPersianToLatinNumbers
 import com.example.katebak.viewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,6 +59,13 @@ class LoginFragment(private val listener: AuthNavigationListener) : Fragment() {
                     val loginRequest =
                         LoginRequest(convertPersianToLatinNumbers(edtUsername.text.toString()))
                     mainViewModel.login(loginRequest)
+                    if (edtLastName.text.toString().isNotBlank() && edtName.text.toString().isNotBlank())
+                    {
+                        val userModel = ProfileModel(edtName.text.toString(),edtLastName.text.toString())
+                        userProfile = userModel
+                    }
+
+
                 }
             }
         }

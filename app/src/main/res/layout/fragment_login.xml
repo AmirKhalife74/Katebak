@@ -33,10 +33,11 @@
                 android:layout_marginBottom="16dp"
                 android:paddingEnd="8dp"
                 android:paddingStart="8dp"
-                android:text="ورود با شماره موبایل"
+                android:text="ثبت نام"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
@@ -49,6 +50,30 @@
                     android:layout_height="48dp"
                     android:autofillHints="phone"
                     android:hint="شماره تلفن همراه" />
+
+                <EditText
+                    android:layout_marginTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:background="@drawable/white_input_box"
+                    android:textColor="@color/primary_color"
+                    android:id="@+id/edt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:autofillHints="phone"
+                    android:hint="نام" />
+
+                <EditText
+                    android:layout_marginTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="8dp"
+                    android:background="@drawable/white_input_box"
+                    android:textColor="@color/primary_color"
+                    android:id="@+id/edt_last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:autofillHints="phone"
+                    android:hint="نام خوانوادگی" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,6 +85,7 @@
                 android:id="@+id/btn_submit_login"
                 android:backgroundTint="@color/primary_color"
                 android:layout_width="match_parent"
+                android:textColor="@color/white"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
                 android:text="ارسال کد تایید" />

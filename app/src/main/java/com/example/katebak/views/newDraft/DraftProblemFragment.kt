@@ -12,7 +12,6 @@ import com.example.katebak.R
 import com.example.katebak.data.models.DraftModel
 import com.example.katebak.databinding.FragmentNewProblemBinding
 import com.example.katebak.utils.Env
-import com.example.katebak.utils.logger
 import com.example.katebak.viewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -34,6 +33,8 @@ class DraftProblemFragment : Fragment() {
         observe()
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,8 +44,9 @@ class DraftProblemFragment : Fragment() {
     }
 
     private fun init() {
-        logger("this is Draft")
-        Toast.makeText(requireContext(), "this is draft", Toast.LENGTH_SHORT).show()
+        mainViewModel.viewModelScope.launch {
+            mainViewModel._clearNewDraftResponse()
+        }
     }
 
     private fun listen() {
@@ -52,26 +54,25 @@ class DraftProblemFragment : Fragment() {
             btnSubmit.setOnClickListener {
                 if (Env.store.getBoolean("isLogin")) {
                     val draft = DraftModel(edtProblem.text.toString())
-                    mainViewModel.viewModelScope.launch {
-                        mainViewModel.newDraft(draft)
-                        binding.buttonProgressBar.visibility = View.VISIBLE
+                    if(edtProblem.text.toString().isNotBlank() && edtProblem.text.toString().isNotEmpty() && edtProblem.text.toString().length < 10)
+                    {
+                        mainViewModel.viewModelScope.launch {
+                            mainViewModel.newDraft(draft)
+                            btnSubmit.text = ""
+                            binding.buttonProgressBar.visibility = View.VISIBLE
+                        }
                     }
+                    else
+                    {
+                        Toast.makeText(requireContext(),"لطفا توضیحات خود را کامل بنویسید !",Toast.LENGTH_LONG).show()
+                    }
+
+
                 } else {
                     findNavController().navigate(R.id.action_draftProblemFragment_to_authFragment)
                 }
 
                 // userProblem = edtProblem.text.toString()
-            }
-
-            imgLogin.setOnClickListener {
-                if (Env.store.getBoolean("isLogin"))
-                {
-                    findNavController().navigate(R.id.action_draftProblemFragment_to_userProfileFragment)
-                }else
-                {
-                    findNavController().navigate(R.id.action_draftProblemFragment_to_authFragment)
-                }
-
             }
         }
     }
@@ -83,6 +84,7 @@ class DraftProblemFragment : Fragment() {
                     val action = DraftProblemFragmentDirections.actionDraftProblemFragmentToDraftResultFragment()
                     findNavController().navigate(action)
                     binding.buttonProgressBar.visibility = View.GONE
+                    binding.btnSubmit.text = "دریافت لایحه"
                 }
             }
         }

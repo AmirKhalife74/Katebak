@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.katebak.data.models.DraftResponseModel
 import com.example.katebak.databinding.FragmentDraftResualtBinding
+import com.example.katebak.utils.copyToClipboard
 import com.example.katebak.viewModels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -53,9 +54,9 @@ class DraftResultFragment : Fragment() {
 
     private fun listen() {
         binding.apply {
-            imgLogin.setOnClickListener {
-                val action = DraftResultFragmentDirections.actionDraftResultFragmentToUserProfileFragment()
-                findNavController().navigate(action)
+            btnCopy.setOnClickListener {
+                val copyString = tvDraftSubject.text.toString() + "\n" + tvDraftContent.text .toString()
+                copyToClipboard(requireContext(), copyString)
             }
         }
     }

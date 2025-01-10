@@ -5,7 +5,7 @@
     android:translationZ="10dp"
     android:layout_height="56dp">
     <ImageView
-        android:src="@mipmap/ic_launcher_round"
+        android:src="@drawable/logo_v2"
         android:layout_marginEnd="16dp"
         android:padding="8dp"
         android:id="@+id/img_logo"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:text="کاتِبَک"
+        android:text="دادنگار"
         android:textStyle="bold"
         android:textSize="21sp"
         android:id="@+id/tv_logo"

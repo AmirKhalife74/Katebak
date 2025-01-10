@@ -2,6 +2,8 @@ package com.example.katebak.utils
 
 import android.animation.Animator
 import android.animation.ValueAnimator
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Configuration
@@ -10,6 +12,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import com.example.katebak.R
@@ -161,4 +164,12 @@ fun convertPersianToLatinNumbers(input: String): String {
     )
 
     return input.map { persianToLatinMap[it] ?: it }.joinToString("")
+}
+
+fun copyToClipboard(context: Context, text: String) {
+    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+    val clip = ClipData.newPlainText("label", text)
+    clipboard.setPrimaryClip(clip)
+
+    Toast.makeText(context, "متن در حافظه موقت کپی شد !", Toast.LENGTH_SHORT).show()
 }
